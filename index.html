@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff4d6d,#ff8fab,#c77dff,#4361ee);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.stars{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+.star{
+position:absolute;
+color:white;
+font-size:12px;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2;transform:scale(.8);}
+to{opacity:1;transform:scale(1.4);}
+}
+
+.card{
+width:340px;
+padding:30px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+border-radius:25px;
+box-shadow:0 0 35px rgba(255,255,255,.35);
+text-align:center;
+color:white;
+z-index:5;
+}
+
+h1{
+font-size:34px;
+margin-bottom:8px;
+text-shadow:0 0 20px white;
+}
+
+.name{
+font-size:28px;
+font-weight:bold;
+color:#fff700;
+margin-bottom:25px;
+}
+
+.candles{
+font-size:28px;
+transition:.5s;
+}
+
+.cake{
+font-size:120px;
+cursor:pointer;
+transition:.4s;
+}
+
+.cake:hover{
+transform:scale(1.08);
+}
+
+.note{
+margin-top:18px;
+font-size:18px;
+animation:blink 1.3s infinite;
+}
+
+@keyframes blink{
+50%{opacity:.4;}
+}
+
+.balloon{
+position:absolute;
+bottom:-120px;
+font-size:40px;
+animation:float linear infinite;
+}
+
+@keyframes float{
+to{
+transform:translateY(-130vh);
+}
+}
+
+.confetti{
+position:absolute;
+width:8px;
+height:14px;
+display:none;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+from{
+transform:translateY(-30px) rotate(0);
+}
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="card">
+
+<h1>🎉 Happy Birthday 🎉</h1>
+
+<div class="name">YOUR FRIEND</div>
+
+<div class="candles" id="candles">
+🕯️ 🕯️ 🕯️
+</div>
+
+<div class="cake" onclick="blow()">
+🎂
+</div>
+
+<div class="note">
+👆 Tap the Cake
+</div>
+
+</div>
+
+<script>
+
+// Stars
+for(let i=0;i<80;i++){
+let s=document.createElement("div");
+s.className="star";
+s.innerHTML="✦";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+s.style.animationDelay=Math.random()*2+"s";
+document.getElementById("stars").appendChild(s);
+}
+
+// Balloons
+for(let i=0;i<10;i++){
+let b=document.createElement("div");
+b.className="balloon";
+b.innerHTML="🎈";
+b.style.left=Math.random()*100+"vw";
+b.style.animationDuration=(8+Math.random()*6)+"s";
+document.body.appendChild(b);
+}
+
+function blow(){
+
+document.getElementById("candles").innerHTML="💨 💨 💨";
+
+for(let i=0;i<180;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.display="block";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.background="hsl("+Math.random()*360+",100%,50%)";
+
+c.style.animationDelay=Math.random()+"s";
+
+document.body.appendChild(c);
+
+}
+
+setTimeout(()=>{
+window.location="wish.html";
+},2800);
+
+}
+
+</script>
+
+</body>
+</html>
