@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#6a11cb,#2575fc,#ff4e8a);
+background-size:400% 400%;
+animation:bg 12s infinite alternate;
+}
+
+@keyframes bg{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+.card{
+width:92%;
+max-width:380px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+border-radius:25px;
+padding:25px;
+text-align:center;
+color:white;
+box-shadow:0 0 30px rgba(255,255,255,.3);
+z-index:5;
+}
+
+h1{
+font-size:34px;
+margin-bottom:15px;
+text-shadow:0 0 20px white;
+}
+
+#text{
+font-size:20px;
+line-height:1.6;
+min-height:150px;
+}
+
+.gift{
+font-size:95px;
+cursor:pointer;
+margin:20px 0;
+transition:.4s;
+}
+
+.gift:hover{
+transform:scale(1.1) rotate(-8deg);
+}
+
+.tap{
+font-size:18px;
+opacity:.9;
+}
+
+.heart{
+position:absolute;
+bottom:-40px;
+font-size:22px;
+animation:up linear forwards;
+}
+
+@keyframes up{
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+#popup{
+position:fixed;
+inset:0;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,.75);
+}
+
+@keyframes zoom{
+from{transform:scale(.5);}
+to{transform:scale(1);}
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+font-size:17px;
+cursor:pointer;
+}
+
+.giftbox{
+background:white;
+width:320px;
+padding:25px;
+border-radius:20px;
+text-align:center;
+animation:zoom .5s;
+box-shadow:0 0 40px rgba(255,255,255,.5);
+}
+
+#closed{
+cursor:pointer;
+font-size:90px;
+animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🎉 Happy Birthday 🎉</h1>
+
+<h2>Sagar❤️</h2>
+
+<p id="text"></p>
+
+<div class="gift" onclick="openGift()">
+🎁
+</div>
+
+<div class="tap">Tap the Gift 🎁</div>
+
+</div>
+
+<div id="popup">
+
+<div class="giftbox">
+
+<div id="closed">
+🎁
+<br><br>
+<h2>Opening your surprise...</h2>
+</div>
+
+<div id="opened" style="display:none;">
+
+<div style="font-size:90px;">🎉🎁✨</div>
+
+<h2 style="color:#ff4081;">Happy Birthday ❤️</h2>
+
+<p style="line-height:1.8;color:#444;padding:10px;">
+
+Dear <b>Sagar</b>, ❤️<br><br>
+
+On your special day, I just want to wish you endless happiness, good health, success and beautiful memories.<br><br>
+
+Thank you for always being such an amazing friend. You deserve all the joy in the world.<br><br>
+
+May your smile always shine as brightly as today. Keep chasing your dreams and never stop believing in yourself.<br><br>
+
+🎂 Happy Birthday! 🎂
+
+</p>
+
+<button onclick="closeGift()">Close</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const msg="Wishing you a day filled with smiles, love, happiness and unforgettable moments. Happy Birthday! 🎂🎈";
+
+let i=0;
+
+function type(){
+if(i<msg.length){
+document.getElementById("text").innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,45);
+}
+}
+type();
+
+function openGift(){
+
+document.getElementById("popup").style.display="flex";
+document.getElementById("closed").style.display="block";
+document.getElementById("opened").style.display="none";
+
+setTimeout(function(){
+document.getElementById("closed").style.display="none";
+document.getElementById("opened").style.display="block";
+fireworks();
+},1000);
+
+}
+
+function closeGift(){
+
+document.getElementById("popup").style.display="none";
+document.getElementById("closed").style.display="block";
+document.getElementById("opened").style.display="none";
+
+}
+
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=Math.random()>0.5?"❤️":"💖";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(5+Math.random()*3)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+},300);
+
+function fireworks(){
+for(let i=0;i<120;i++){
+let s=document.createElement("div");
+s.style.position="absolute";
+s.style.left="50%";
+s.style.top="50%";
+s.style.width="6px";
+s.style.height="6px";
+s.style.borderRadius="50%";
+s.style.background=`hsl(${Math.random()*360},100%,50%)`;
+s.style.transition="1s";
+document.body.appendChild(s);
+
+setTimeout(()=>{
+let x=(Math.random()-0.5)*700;
+let y=(Math.random()-0.5)*700;
+s.style.transform=`translate(${x}px,${y}px)`;
+s.style.opacity=0;
+},20);
+
+setTimeout(()=>s.remove(),1200);
+}
+}
+
+</script>
+
+</body>
+</html>
